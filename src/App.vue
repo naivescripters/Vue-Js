@@ -11,12 +11,21 @@
         :updateLastName="updateLastName"
     />
     <compFriends/>
-
+    <compHabilities>
+        <ul slot="main_hab">
+            <li v-for="(hab,index) in habilities" :key="index">
+                {{hab}}
+            </li>
+        </ul>
+        <div slot="notes">
+            <p>The user also knows PHP</p>
+        </div>
+        <div>
+            <a href="#">See more about this user</a>
+        </div>
+    </compHabilities>
     </div>
 
-
-    
-    
     <compFooter/>
 </div>
     
@@ -26,6 +35,7 @@
     import compFooter from './Components/Header_footer/Footer.vue';
     import compUserProfile from './Components/User/Profile.vue';
     import compFriends from './Components/User/Friends.vue';
+    import compHabilities from './Components/User/Habilities.vue';
 
     export default {
         data() {
@@ -36,7 +46,8 @@
                 parents:{
                     mother:"Nozufa",
                     father:"Shafikul"
-                }
+                },
+                habilities:['JS','CSS','HTML']
             }
         },
         methods:{
@@ -48,7 +59,8 @@
         components:{
             compFooter,
             compUserProfile,
-            compFriends
+            compFriends,
+            compHabilities
         }
     }
 </script>
