@@ -1,79 +1,59 @@
 <template>
-<div>
-    <app-header></app-header>
-    <div class="container">
-        <compUserProfile
-        :userName="name"
-        :userLastName="lastname"
-        :userAge="age"
-        :userParents="parents"
-        @updateName="name = $event"
-        :updateLastName="updateLastName"
-    />
-    <compFriends/>
-    <compHabilities>
-        <ul slot="main_hab">
-            <li v-for="(hab,index) in habilities" :key="index">
-                {{hab}}
-            </li>
-        </ul>
-        <div slot="notes">
-            <p>The user also knows PHP</p>
-        </div>
-        <div>
-            <a href="#">See more about this user</a>
-        </div>
-    </compHabilities>
-    </div>
+    <div>
+        <app-header/>
+        <div class="container">
+            <div>
+                <button @click="compToRender = 'compHome'">Home</button>
+                <button @click="compToRender = 'compContact'">Contact</button>
+                <button @click="compToRender = 'compPage'">Page</button>
+            </div>
 
-    <compFooter/>
-</div>
-    
+            <keep-alive>
+                <component :is="compToRender"></component>
+            </keep-alive>
+            
+
+
+        </div>
+        <app-footer/>
+    </div>
 </template>
 
 <script>
-    import compFooter from './Components/Header_footer/Footer.vue';
-    import compUserProfile from './Components/User/Profile.vue';
-    import compFriends from './Components/User/Friends.vue';
-    import compHabilities from './Components/User/Habilities.vue';
+
+    import compContact from './Components/Contact.vue';
+    import compHome from './Components/Home.vue';
+    import compPage from './Components/Page.vue';
 
     export default {
-        data() {
+        data(){
             return {
-                name:"Abul",
-                lastname:"Hasan",
-                age:24,
-                parents:{
-                    mother:"Nozufa",
-                    father:"Shafikul"
-                },
-                habilities:['JS','CSS','HTML']
+                compToRender:'compContact'
             }
         },
-        methods:{
-            updateLastName(value){
-                this.lastname = value;
-            }
-        },
-        
         components:{
-            compFooter,
-            compUserProfile,
-            compFriends,
-            compHabilities
+            compContact,
+            compHome,
+            compPage
         }
     }
+        
 </script>
+
+
 <style>
-    body{
-        padding:0px;
+    body {
+        padding:0;
         margin:0;
-        font-family:'Roboto',sans-serif;
+        font-family: 'Roboto', sans-serif;
     }
-    .container{
-        min-height:84vh;
-        box-sizing:border-box;
-        padding:20px;
+
+    .container {
+        min-height: 84vh;
+        box-sizing: border-box;
+        padding: 20px;
     }
-    
+
+
+
 </style>

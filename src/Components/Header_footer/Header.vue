@@ -1,7 +1,7 @@
 <template>
     <div>
         <header>
-            Header 
+            NaiveScrpters.com
         </header>
     </div>
 </template>
